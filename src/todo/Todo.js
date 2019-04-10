@@ -9,6 +9,8 @@ const URL_GET = 'http://localhost:8080/tarefas_rest/todos/'
 
 const URL_POST = 'http://localhost:8080/tarefas_rest/todo'
 
+
+
 export default class Todo extends Component {
 
    constructor(props){
@@ -21,9 +23,22 @@ export default class Todo extends Component {
 
     this.handleChange = this.handleChange.bind(this);
 
+    this.handleRemove = this.handleRemove.bind(this);
+
     this.refresh()
 
    }
+
+    handleRemove(todo){
+        alert(`${URL_POST}/${todo.id}`)
+        axios.delete(`${URL_POST}/${todo.id}`)
+            .then(resp => this.refresh())
+    }
+
+    handleMarkAsDone(todo){
+
+        axios.put
+    }
 
     refresh(){
 
@@ -57,7 +72,8 @@ export default class Todo extends Component {
                 <TodoForm handleAdd={this.handleAdd}
                 handleChange={this.handleChange}
                 description={this.state.description}/>
-                <TodoList list={this.state.list} />
+                <TodoList list={this.state.list}
+                    handleRemove={this.handleRemove} />
             </div>
         )
     }

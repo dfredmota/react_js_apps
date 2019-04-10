@@ -11,7 +11,7 @@ export default props => {
         return (
             <button className={'btn btn-'+props.style}
                  onClick={props.onClick}>
-                Add
+                {props.acao}
             </button>
         )
     }
