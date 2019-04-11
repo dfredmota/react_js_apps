@@ -12,16 +12,16 @@ export default props => {
 
             <tr key={todo.id}>
 
-                <td>{todo.description}</td>
+                <td className={todo.done ? 'markedAsDone' : '' }>{todo.description}</td>
                 <td>
                     
-                <IconButton style='danger' acao='Deletar'
+                <IconButton style='danger' acao='Deletar' hide={!todo.done}
                     onClick={() => props.handleRemove(todo)}/>
                  
-                <IconButton style='warning' acao='Feita'
+                <IconButton style='success' acao='Feita' hide={todo.done}
                 onClick={() => props.handleMarkAsDone(todo)}></IconButton>
 
-                <IconButton style='warning' acao='Pendente'
+                <IconButton style='warning' acao='Pendente' hide={!todo.done}
                 onClick={() => props.handleMarkAsPending(todo)}></IconButton>
                 </td>
 
@@ -38,7 +38,7 @@ export default props => {
 
             <tr>
 
-                <th> Descrição</th>
+                <th className='tableActions'> Descrição</th>
                 <th> Ações </th>
 
             </tr>
