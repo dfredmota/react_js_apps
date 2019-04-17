@@ -5,10 +5,12 @@ import PageHeader from '../template/PageHeader'
 import TodoForm from '../todo/TodoForm'
 import TodoList from '../todo/TodoList'
 
+
+
+
 const URL_GET = 'http://localhost:8080/tarefas_rest/todos/'
 
 const URL_POST = 'http://localhost:8080/tarefas_rest/todo'
-
 
 
 export default class Todo extends Component {
@@ -36,6 +38,7 @@ export default class Todo extends Component {
     this.refresh()
 
    }
+   
 
     handleRemove(todo){
         axios.delete(`${URL_POST}/${todo.id}`)
@@ -70,7 +73,7 @@ export default class Todo extends Component {
         // console.log(res.data);
 
         const description = this.state.description
-        axios.post(URL_POST,{description})
+       
         .then(resp => this.refresh())
     }
 

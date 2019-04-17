@@ -6,10 +6,13 @@ import * as serviceWorker from './serviceWorker';
 import 'bootstrap/dist/css/bootstrap.css';
 import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
 import './template/custom.css'
-import { createStore } from 'redux'
+import { applyMiddleware,createStore } from 'redux'
 import { Provider } from 'react-redux'
 import { combineReducers } from 'redux'
 import TodoReducer from './todo/TodoReducer'
+import promise from 'redux-promise'
+import multi from 'redux-multi'
+import thunk from 'redux-thunk'
 
 
 const rootReducer = combineReducers({
@@ -20,7 +23,7 @@ const rootReducer = combineReducers({
 
 const devTools = window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
 
-const store = createStore(rootReducer, devTools)
+const store = applyMiddleware(thunk,multi , promise)(createStore)(rootReducer, devTools)
 ReactDOM.render(
 <Provider store={store}>
 <App />
